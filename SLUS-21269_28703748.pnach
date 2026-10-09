@@ -1,0 +1,70 @@
+// Revision 4: native UI initialization corrected; stable group name retained for live reload.
+gametitle=Bully [NTSC-U] SLUS-21269 CRC 28703748
+// Revision 4. Verified against Bully NTSC-U v1.02, SLUS-21269, CRC 28703748.
+// Use in-game 16:9 and emulator Auto (patch requests 16:10). See README for save states.
+// Disable every other widescreen/experimental patch.
+// No ISO changes. Geometry is a new camera-view-window derivation.
+// Research credit: Arapapa / El_Patas camera routine identification.
+
+[Bully 16:10 Projection v3]
+gsaspectratio=16:10
+author=Codex; research based on Arapapa and El_Patas
+description=16:10 projection and native UI scaling. In-game Wide 16:9; emulator Auto. Tested on ARMSX2 macOS; see README.
+
+// 5/6 constant in padding after jr ra; original=00000000
+patch=1,EE,00124578,word,3F555555
+// 0.9 constant in padding after jr ra; original=00000000
+patch=1,EE,0012457C,word,3F666666
+// lui at,0x12; original=00000000
+patch=1,EE,0012449C,word,3C010012
+// lwc1 f1,0x457c(at): 0.9; original=00000000
+patch=1,EE,001244A0,word,C421457C
+// div.s f0,f21,f20: preserve the vertical view window; original=4614A803
+patch=1,EE,001244A4,word,4614A803
+// mul.s f1,f21,f1: reduce the native 16:9 horizontal view window by 10%; original=00000000
+patch=1,EE,001244A8,word,4601A842
+// swc1 f1,0xd8(sp): new horizontal view window; original=E7B500D8
+patch=1,EE,001244AC,word,E7A100D8
+
+
+// Native UI scaler: replace 4:3 scale 1.0 with full float32 5/6.
+// original=3C033F80; lui $v1, 0x12
+patch=1,EE,0020C0B0,word,3C030012
+// original=44830000; lwc1 $f0, 0x4578($v1)
+patch=1,EE,0020C0C4,word,C4604578
+// original=3C033F80; lui $v1, 0x12
+patch=1,EE,0020C0CC,word,3C030012
+// original=44831000; lwc1 $f2, 0x4578($v1)
+patch=1,EE,0020C0E0,word,C4624578
+// original=3C023F80; lui $v0, 0x12
+patch=1,EE,004A9D34,word,3C020012
+// original=44820000; lwc1 $f0, 0x4578($v0)
+patch=1,EE,004A9D38,word,C4404578
+// original=3C023F80; lui $v0, 0x12
+patch=1,EE,004A9D40,word,3C020012
+// original=44821000; lwc1 $f2, 0x4578($v0)
+patch=1,EE,004A9D54,word,C4424578
+
+// Synchronize UI factors when loading an existing save state.
+patch=1,EE,005E09B0,word,3F555555
+patch=1,EE,005E09B8,word,3F99999A
+patch=1,EE,005E09C0,word,3F555555
+patch=1,EE,005E09C8,word,3F99999A
+
+// Convert native widescreen UI initialization from 0.75 to exact 5/6.
+// original=3C033F40
+patch=1,EE,0020C0B4,word,3C030012
+// original=44830000
+patch=1,EE,0020C0B8,word,C4604578
+// original=3C033F40
+patch=1,EE,0020C0D0,word,3C030012
+// original=44831000
+patch=1,EE,0020C0D4,word,C4624578
+// original=3C023F40
+patch=1,EE,004A9D24,word,3C020012
+// original=44820000
+patch=1,EE,004A9D28,word,C4404578
+// original=3C023F40
+patch=1,EE,004A9D44,word,3C020012
+// original=44821000
+patch=1,EE,004A9D48,word,C4424578
