@@ -64,7 +64,7 @@ Original instructions were checked against the tested ELF. No fixed scene-depend
 
 ## Credits
 
-Published and tested by **MatthewBlenk**, with implementation and executable analysis assisted by **OpenAI Codex**.
+**Author: MatthewBlenk.** Developed with AI assistance (OpenAI Codex) for implementation and executable analysis.
 
 Historical widescreen research by **Arapapa and El_Patas** informed the camera-routine investigation. See the [PCSX2 widescreen patch discussion](https://forums.pcsx2.net/Thread-PCSX2-Widescreen-Game-Patches?page=527).
 

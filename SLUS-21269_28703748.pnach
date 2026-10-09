@@ -4,11 +4,12 @@ gametitle=Bully [NTSC-U] SLUS-21269 CRC 28703748
 // Use in-game 16:9 and emulator Auto (patch requests 16:10). See README for save states.
 // Disable every other widescreen/experimental patch.
 // No ISO changes. Geometry is a new camera-view-window derivation.
+// Developed by MatthewBlenk with AI assistance (OpenAI Codex).
 // Research credit: Arapapa / El_Patas camera routine identification.
 
 [Bully 16:10 Projection v3]
 gsaspectratio=16:10
-author=Codex; research based on Arapapa and El_Patas
+author=MatthewBlenk
 description=16:10 projection and native UI scaling. In-game Wide 16:9; emulator Auto. Tested on ARMSX2 macOS; see README.
 
 // 5/6 constant in padding after jr ra; original=00000000
