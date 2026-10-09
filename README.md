@@ -18,7 +18,7 @@ PAL, NTSC-J, other CRCs, and other emulators have **not** been validated. Do not
 
 ## Download
 
-Download `SLUS-21269_28703748.pnach` from the [latest release](https://github.com/MatthewBlenk/bully-ps2-16x10/releases/latest). The ZIP includes the patch and installation instructions.
+Download `SLUS-21269_28703748.pnach` from the [revision 4 release](https://github.com/MatthewBlenk/bully-ps2-16x10/releases/tag/revision-4). The ZIP includes the patch and installation instructions.
 
 ## Install in ARMSX2
 
